@@ -1,0 +1,606 @@
+/* Estilos generales del cuerpo y las pantallas */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column; /* Apila el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    justify-content: center; /* Centra el contenido verticalmente si hay espacio extra */
+    min-height: 100vh; /* Asegura que ocupe al menos el 100% del alto de la ventana */
+    margin: 0;
+    background-color: #e6e9ed; /* Color de fondo base suave */
+    color: #333;
+    overflow-y: auto; /* Permite scroll si el contenido es demasiado largo */
+}
+
+/* Clases base para las pantallas (inicio y juego) */
+.screen {
+    display: flex;
+    flex-direction: column; /* Organiza header, content, footer verticalmente */
+    width: 100%;
+    min-height: 100vh; /* Asegura que la pantalla ocupe toda la altura */
+    text-align: center;
+    box-sizing: border-box; /* Incluye padding y borde en el ancho/alto */
+}
+
+/* Estilos específicos para la pantalla de inicio */
+#start-screen {
+    background: linear-gradient(to bottom right, #f0f4f8, #e0e6ed); /* Degradado suave */
+    color: #333;
+    padding: 20px;
+    justify-content: center; /* Centra verticalmente el contenido de la pantalla de inicio */
+}
+
+#start-screen h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #2c3e50; /* Azul oscuro */
+}
+
+#start-screen p {
+    font-size: 1.2em;
+    margin-bottom: 30px; /* Espacio antes de los botones */
+}
+
+/* Contenedor para los botones del menú principal (quedará vertical por ahora) */
+.main-menu-buttons {
+    display: flex;
+    flex-direction: column; /* Los botones se apilan verticalmente */
+    gap: 15px; /* Espacio entre los botones */
+    align-items: center; /* Centra los botones horizontalmente dentro de este contenedor */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 400px; /* Limita el ancho máximo para que los botones no sean demasiado anchos */
+    margin-top: 20px; /* Espacio superior para separarlo del párrafo */
+}
+
+/* Estilos generales para los botones del menú */
+.menu-button {
+    padding: 15px 30px;
+    font-size: 1.3em;
+    background-color: #007bff; /* Azul para los botones */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    width: 100%; /* Los botones ocupan todo el ancho de su contenedor (.main-menu-buttons) */
+    text-align: center;
+}
+
+/* Estilo específico para el botón de "Jugar en Sala Privada" */
+#start-game-button {
+    background-color: #28a745; /* Verde vibrante */
+}
+
+.menu-button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+#start-game-button:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+}
+
+.menu-button:active {
+    transform: translateY(0); /* Vuelve a la posición original al hacer clic */
+}
+
+/* La clase hidden se usa para ocultar elementos */
+.hidden {
+    display: none !important; /* ¡Importante para asegurar que se oculte! */
+}
+
+/* Estilos para la pantalla de juego principal */
+#game-screen {
+    background-color: #e6e9ed; /* Fondo principal de la pantalla de juego */
+    justify-content: space-between; /* Distribuye espacio entre header, content y footer */
+}
+
+/* HEADER: Rectángulo superior azul oscuro */
+.game-header {
+    background-color: #2c3e50; /* Azul oscuro distintivo */
+    color: white;
+    padding: 20px 0;
+    width: 100%; /* Ocupa todo el ancho */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* No permite que el header se encoja */
+    /* Para centrar el contenido (h1, p) si tiene varios elementos */
+    display: flex;
+    flex-direction: column; /* Apila el contenido del header verticalmente */
+    justify-content: center;
+    align-items: center;
+}
+
+.game-header h1 {
+    margin: 0; /* Elimina márgenes por defecto del h1 */
+    font-size: 2.5em; /* Tamaño para el título principal "Ajedrez Online" */
+    margin-bottom: 10px; /* Espacio debajo del h1 */
+}
+
+.game-header p.welcome-text {
+    font-size: 3em !important; /* ¡AUMENTADO Y CON !important PARA FORZAR! */
+    margin: 0 0 5px 0;
+    font-weight: bold;
+}
+
+.game-header p.tagline-text {
+    font-size: 1.1em; /* Tamaño para "Juega contra tus amigos..." */
+    margin: 0;
+    opacity: 0.9; /* Un poco más transparente */
+}
+
+/* CONTENEDOR PRINCIPAL DEL JUEGO (entre header y footer) */
+.game-content-wrapper {
+    flex-grow: 1; /* Permite que este contenedor ocupe todo el espacio disponible */
+    display: flex;
+    flex-direction: column; /* Organiza la sala y el área de juego verticalmente */
+    align-items: center; /* Centra horizontalmente el contenido */
+    padding: 20px; /* Padding interno para el contenido */
+    box-sizing: border-box;
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+}
+
+/* FOOTER: Rectángulo inferior azul oscuro */
+.game-footer {
+    background-color: #2c3e50; /* Mismo azul oscuro que el header */
+    color: white;
+    padding: 10px 0;
+    width: 100%; /* Ocupa todo el ancho */
+    font-size: 0.9em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0; /* No permite que el footer se encoja */
+}
+
+/* Contenedor para la selección de sala (input y botón de unirse) */
+.room-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px; /* Espacio debajo de la selección de sala */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.room-selection input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 200px;
+}
+
+.room-selection button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.room-selection button:hover {
+    background-color: #0056b3;
+}
+
+.room-selection p {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Área principal del juego (tablero y barra lateral) */
+.game-area {
+    display: flex;
+    flex-direction: row; /* Coloca el tablero y la sidebar uno al lado del otro */
+    gap: 20px;
+    align-items: flex-start; /* Alinea los elementos al inicio (arriba) */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    justify-content: center; /* Centra si hay espacio extra */
+}
+
+/* Estilos del tablero */
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 60px); /* 8 columnas de 60px */
+    grid-template-rows: repeat(8, 60px); /* 8 filas de 60px */
+    border: 2px solid #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative; /* Para posicionamiento absoluto de piezas */
+    flex-shrink: 0; /* No permite que el tablero se encoja */
+}
+
+.square {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em; /* Tamaño de la pieza */
+    cursor: pointer;
+    user-select: none; /* Evita selección de texto */
+    position: relative;
+}
+
+.square.light {
+    background-color: #f0d9b5; /* Cuadrado claro */
+}
+
+.square.dark {
+    background-color: #b58863; /* Cuadrado oscuro */
+}
+
+.square .piece {
+    z-index: 1; /* Asegura que la pieza esté por encima de posibles indicadores */
+    pointer-events: none; /* Permite hacer clic en el cuadrado, no en la pieza */
+}
+
+.piece.white-piece {
+    color: #fff; /* Color de las piezas blancas */
+}
+
+.piece.black-piece {
+    color: #333; /* Color de las piezas negras */
+}
+
+.square.selected {
+    background-color: #a7d3a7; /* Color cuando un cuadrado está seleccionado */
+}
+
+/* Barra lateral para controles, historial y chat */
+.sidebar {
+    display: flex;
+    flex-direction: column; /* Apila controles, historial y chat verticalmente */
+    gap: 20px;
+    width: 300px; /* Ancho fijo para la sidebar */
+    flex-shrink: 0; /* No permite que la sidebar se encoja */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.controls p {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.controls button {
+    padding: 8px 15px;
+    background-color: #dc3545; /* Rojo para abandonar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #c82333;
+}
+
+#draw-offer-button {
+    background-color: #ffc107; /* Amarillo para tablas */
+    color: #333;
+}
+
+#draw-offer-button:hover {
+    background-color: #e0a800;
+}
+
+
+/* Historial de movimientos */
+.move-history-container {
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 200px; /* Altura máxima con scroll */
+    overflow-y: auto;
+    text-align: left;
+}
+
+.move-history-container h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.move-history-container ol {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.move-history-container li {
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.history-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.history-navigation button {
+    background-color: #6c757d; /* Gris para botones de navegación */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 1em;
+}
+
+.history-navigation button:hover {
+    background-color: #5a6268;
+}
+
+.history-navigation button:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    color: #6c757d;
+}
+
+/* Diálogo de promoción de peón */
+#promotion-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#promotion-dialog p {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.promotion-choices {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.promotion-choices span {
+    font-size: 3em;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.promotion-choices span:hover {
+    background-color: #f0f0f0;
+}
+
+/* Chat */
+.chat-container {
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que el chat crezca en altura */
+    min-height: 150px; /* Altura mínima del chat */
+}
+
+.chat-container h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto; /* Permite scroll si hay muchos mensajes */
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 3px;
+    text-align: left;
+}
+
+#chat-messages p {
+    margin: 3px 0;
+    word-wrap: break-word; /* Rompe palabras largas para que quepan */
+}
+
+#chat-messages p span {
+    font-weight: bold;
+}
+
+#chat-messages p:nth-child(even) {
+    background-color: #f2f2f2; /* Estilo alterno para mensajes */
+}
+
+.chat-input {
+    display: flex;
+    gap: 5px;
+}
+
+#chat-input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+#send-chat-button {
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+#send-chat-button:hover {
+    background-color: #218838;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 1000px) {
+    .game-area {
+        flex-direction: column; /* Apila el tablero y la sidebar verticalmente */
+        align-items: center;
+    }
+    .sidebar {
+        width: 90%; /* Ancho de la sidebar en pantallas más pequeñas */
+        max-width: 400px; /* Limita el ancho máximo */
+        flex-direction: row; /* Coloca los elementos de la sidebar en fila si caben */
+        flex-wrap: wrap; /* Permite que se envuelvan */
+        justify-content: center;
+    }
+    .controls, .move-history-container, .chat-container {
+        width: 90%; /* Ajusta el ancho para ser responsive */
+        max-width: none; /* Elimina el límite máximo */
+    }
+    .game-header h1 {
+        font-size: 2em;
+    }
+    .game-footer p {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 600px) {
+    #start-screen h1 {
+        font-size: 2.2em;
+    }
+    #start-screen p {
+        font-size: 1em;
+    }
+    .main-menu-buttons {
+        max-width: 90%; /* Ajusta el ancho para pantallas muy pequeñas */
+    }
+    .menu-button {
+        font-size: 1.1em; /* Reduce el tamaño de fuente de los botones */
+        padding: 12px 20px;
+    }
+    .chessboard {
+        grid-template-columns: repeat(8, 35px); /* Reduce el tamaño del tablero */
+        grid-template-rows: repeat(8, 35px);
+    }
+    .square {
+        width: 35px;
+        height: 35px;
+        font-size: 2em; /* Tamaño de la pieza en móviles */
+    }
+    .game-header h1 {
+        font-size: 1.5em;
+    }
+    .game-footer p {
+        font-size: 0.7em;
+    }
+    .room-selection input {
+        width: 80%;
+    }
+    .sidebar {
+        flex-direction: column; /* Vuelve a apilar en pantallas muy pequeñas */
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+---
+/* Estilos para los temporizadores y la información del jugador */
+.timers-and-info {
+    display: flex;
+    flex-direction: column; /* Apila los temporizadores y el turno */
+    align-items: center; /* Centra horizontalmente */
+    gap: 15px; /* Espacio entre los bloques de temporizador/turno */
+    margin-bottom: 20px; /* Espacio antes del tablero */
+    width: 100%;
+    max-width: 300px; /* Limita el ancho en pantallas grandes */
+    background-color: #f0f4f8; /* Fondo suave para el contenedor */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.player-name {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #2c3e50;
+}
+
+.timer {
+    font-family: 'Consolas', 'monospace'; /* Fuente monoespaciada para el temporizador */
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #d9534f; /* Rojo para el temporizador */
+}
+
+/* Estilo para el temporizador activo */
+.timer.active {
+    color: #5cb85c; /* Verde cuando está activo */
+}
+
+/* Estilo para el indicador de turno */
+.current-turn-display {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #555;
+    margin: 0; /* Elimina margen por defecto */
+}
+
+/* Ajustes para la barra lateral en pantallas pequeñas para dar espacio al temporizador */
+@media (max-width: 1000px) {
+    .game-area {
+        flex-direction: column;
+        align-items: center;
+    }
+    .timers-and-info {
+        max-width: 90%; /* Ajusta el ancho para móviles */
+        margin-bottom: 15px;
+    }
+    /* Asegura que el tablero no se encoja demasiado */
+    .chessboard {
+        min-width: 280px; /* Mínimo para que las piezas se vean bien */
+        min-height: 280px;
+    }
+}

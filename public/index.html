@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Ajedrez Online</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body>
+    <div id="start-screen" class="screen">
+        <header class="game-header">
+            <h1>Ajedrez Online</h1> <p class="welcome-text">Bienvenido</p> <p class="tagline-text">Juega contra tus amigos en tiempo real</p> </header>
+
+        <div class="game-content-wrapper"> <div class="main-menu-buttons">
+                <button id="analysis-button" class="menu-button">Análisis</button>
+                <button id="start-game-button" class="menu-button">Jugar en Sala Privada</button>
+                <button id="history-button" class="menu-button">Historial de Partidas</button>
+            </div>
+        </div> <footer class="game-footer">
+            <p>&copy; 2025 Mi Ajedrez Online</p>
+        </footer>
+    </div>
+
+    <div id="game-screen" class="screen hidden">
+        <header class="game-header">
+            <h1>Ajedrez con Amigos</h1>
+        </header>
+
+        <div class="game-content-wrapper">
+            <div class="room-selection">
+                <input type="text" id="room-code-input" placeholder="Introduce código de sala">
+                <button id="join-room-button">Unirse a Sala</button>
+                <p id="room-status"></p>
+            </div>
+
+            <div class="game-area">
+                <div class="timers-and-info">
+                    <div id="player-black-info" class="player-info">
+                        <span class="player-name">Negras</span>
+                        <span id="timer-black" class="timer">08:00</span>
+                    </div>
+                    <p id="current-turn-display" class="current-turn-display">Es el turno de: Blancas</p>
+                    <div id="player-white-info" class="player-info">
+                        <span class="player-name">Blancas</span>
+                        <span id="timer-white" class="timer">08:00</span>
+                    </div>
+                </div>
+                <div class="chessboard">
+                    </div>
+
+                <div class="sidebar">
+                    <div class="controls">
+                        <p>Movimientos: <span id="move-count">0</span></p>
+                        <button id="resign-button">Abandonar</button>
+                        <button id="draw-offer-button">Ofrecer Tablas</button>
+                    </div>
+
+                    <div class="move-history-container hidden">
+                        <h3>Historial de Movimientos</h3>
+                        <div class="history-navigation">
+                            <button id="go-to-start-button" title="Ir al inicio (F2)">⏮</button>
+                            <button id="go-back-button" title="Retroceder 1 jugada (F3)">◀</button>
+                            <button id="go-forward-button" title="Adelantar 1 jugada (F4)">▶</button>
+                            <button id="go-to-end-button" title="Ir al final (F5)">⏭</button>
+                        </div>
+                        <ol id="move-list"></ol>
+                    </div>
+
+                    <div class="chat-container hidden">
+                        <h3>Chat de la Partida</h3>
+                        <div id="chat-messages">
+                            </div>
+                        <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+                        <button id="send-chat-button">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="game-footer">
+            <p>&copy; 2025 Mi Ajedrez Online</p>
+        </footer>
+    </div>
+
+    <div id="promotion-dialog" class="hidden">
+        <p>Promocionar peón a:</p>
+        <div class="promotion-choices">
+            <span data-piece="q">♕</span>
+            <span data-piece="r">♖</span>
+            <span data-piece="b">♗</span>
+            <span data-piece="n">♘</span>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
